@@ -1,0 +1,181 @@
+<div class="jumbotron ">
+    <section class="mb-5">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center"><h1>General Guideline</h1>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><h5>UnSexistifyIt is a language game.</h5>
+                        </li>
+                        <li><h5>You earn points as playing the game.</h5>
+                        </li>
+                        <li><h5>You begin at level one with one challenge in hand.</h5>
+                        </li>
+                        <li><h5>You can unlock the new level and new challenge by earning more points.</h5>
+                        </li>
+                        <li><h5>The game is continual and is not against time.</h5>
+                        </li>
+                        <li><h5>You can leave the game by closing your browser tab.</h5>
+                        </li>
+                        <li><h5>Your status and points will store in your browser.</h5>
+                        </li>
+                    </ul>
+                    <div class="text-center mt-5">
+                        <a href="#/instruction#unsexistifyit" class="btn btn-outline-primary" style="width: 100%;">
+                            Goto instruction
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+    </section>
+    <!-- UNSEXISTIFYIT CHALLENGE -->
+    <section class="mb-5 mt-5">
+        <!--Accordion wrapper-->
+        <div class="accordion card" id="unsexistifyit">
+            <div class="bg-success border-success">
+                <hr>
+                <h2 class="font-weight-bold font-italic text-white text-center mb-4 mt-4">UnSexistifyIt Challenge </h2>
+                <hr>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark" data-toggle="collapse" href="#collapseOne">
+                    <h4 class="d-inline card-title">INSTRUCTION</h4>
+                </div>
+                <div id="collapseOne" class="collapse show" data-parent="#unsexistifyit">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>You are given a sexist statement.</h5></li>
+                            <li><h5>Your task is to convert the statement into non-sexist or as less sexist as possible.</h5></li>
+                            <li><h5>You must make one change at least.</h5></li>
+                            <li><h5>Your modified statement needs to remain meaningful which you may witness in a non-satirical published article or daily news.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseTwo">
+                    <h4 class="d-inline card-title">HOW TO PLAY</h4>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#unsexistifyit">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>Click “Copy Original” button to directly copy the original sentence for easy modification.</h5></li>
+                            <li><h5>Click “Skip to Next” button if there is a sentence you don’t understand or find it difficult to modify.</h5></li>
+                            <li><h5>Click “Submit” button after modifying, to get the score for your modification and go to the next challenge.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseThree">
+                    <h4 class="d-inline card-title">REWARDS</h4>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#unsexistifyit">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>There is a predefined base score (100) for every sentence.</h5></li>
+                            <li><h5>For each modification you make in the original sentence, a certain amount of points reduce from the base score.</h5></li>
+                            <li><h5>The final score you earn for each sentence depends on the number of changes you make.</h5></li>
+                            <li><h5>Making changes to certain kind of words incur the more substantial penalty. These words are:
+                                <ol>
+                                    <li><h5><i style="background-color: gold;"><b>Gender words</b></i> like: father, wife, woman, boy.</h5></li>
+                                    <li><h5><i style="background-color: red;"><b>Negative words</b></i> like: not, don't, aren't, never.</h5></li>
+                                </ol>
+                            </h5></li>
+                            <li><h5>Such words are highlighted in the original sentence to remind you that changing them would result in a higher penalty.</h5></li>
+                            <li><h5>To earn a high score, make the least number of possible changes.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseFour">
+                    <h4 class="d-inline card-title">EXAMPLE</h4>
+                </div>
+                <div id="collapseFour" class="collapse" data-parent="#unsexistifyit">
+                    <div class="card-body">
+                        <img src="/images/UnSexistifyIt_example.png" alt="UnSexistifyIt_example" style="width: 100%;" class="shadow-lg p-4 mb-4 bg-white">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <br>
+                <a class="btn btn-outline-primary btn-lg" role="button" href="#/play" >PLAY NOW!</a>
+                <br>
+            </div>
+    </section>
+    <hr>
+    <!-- RATING CHALLENGE -->
+    <section class="mt-5">
+        <div class="accordion card" ng-show="userLevel > 1" id="rating">
+            <div class="bg-warning border-warning">
+                <hr>
+                <h2 class="font-weight-bold font-italic text-white text-center mb-4 mt-4">Rating Challenge </h2>
+                <hr>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark" data-toggle="collapse" href="#collapseOneRating">
+                    <h4 class="d-inline card-title">INSTRUCTION</h4>
+                </div>
+                <div id="collapseOneRating" class="collapse show" data-parent="#rating">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>You are given a sentence which was modified(unsexistified) by other players in the first challenge.</h5></li>
+                            <li><h5>Your task is to rate how sexist the given sentence is.</h5></li>
+                            <li><h5>That sentence could be awkward, grammatically incorrect, or meaningless.</h5></li>
+                            <li><h5>You can select "Meaningless" option if you think the sentence makes no sense.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseTwoRating">
+                    <h4 class="d-inline card-title">HOW TO PLAY</h4>
+                </div>
+                <div id="collapseTwoRating" class="collapse" data-parent="#rating">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>Click “Skip to Next” button to skip current sentence and rate the next one.</h5></li>
+                            <li><h5>Click “Submit” button after selecting your option, to go to your next challenge.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-1">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseThreeRating">
+                    <h4 class="d-inline card-title">REWARDS</h4>
+                </div>
+                <div id="collapseThreeRating" class="collapse" data-parent="#rating">
+                    <div class="card-body">
+                        <ul>
+                            <li><h5>Here the active player does not get points.</h5></li>
+                            <li><h5>Instead, the answer is used to calculate how much reward the player gets who created the modified sentence in the “UnSexistifyIt” challenge.</h5></li>
+                            <li><h5>The more you think the given sentence is not sexist, the more reward will earn the other player.</h5></li>
+                            <li><h5>The other player will lose a massive amount of points if you select the "Meaningless" option.</h5></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-white bg-dark collapsed" data-toggle="collapse" href="#collapseFourRating">
+                    <h4 class="d-inline card-title">EXAMPLE</h4>
+                </div>
+                <div id="collapseFourRating" class="collapse" data-parent="#rating">
+                    <div class="card-body">
+                        <img src="/images/Rating_example.png" alt="Rating_example" style="width: 100%;" class="shadow-lg p-4 mb-4 bg-white" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" ng-show="userLevel > 1">
+            <br>
+            <a class="btn btn-outline-primary btn-lg" role="button" href="#/play" >PLAY NOW!</a>
+            <br>
+        </div>
+    </section>
+</div>

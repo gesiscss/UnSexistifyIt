@@ -1,0 +1,135 @@
+<section class="probootstrap-cover">
+    <div class="container" ng-cloak>
+        <div class="row align-items-center text-center">
+            <div class="col-sm">
+                <div class="probootstrap-text">
+                    <h1 class="probootstrap-heading text-white mb-4">
+                    <i>UnSexistifyIt</i>
+                    </h1>
+                    <div class="probootstrap-subheading mb-5">
+                        <p class="h4 font-weight-normal">A language game which aims to convert sexist statements into non-sexist.</p>
+                    </div>
+                    <hr>
+                    <p class="h5 font-weight-normal p-3 mb-2 bg-dark text-white" ng-show="localStorageNewUser"> You are signed in as <i>"{{ localStorageNewUser }}"</i>.
+                        <button type="button" class="btn btn-link text-info" ng-click="logout()">Sign Out?</button>
+                    </p>
+                    <div ng-show="!localStorageNewUser">
+                        <!-- GUSET BUTTON -->
+                        <div>
+                            <form ng-submit="addNewGuest()" class="form-signin">
+                                <button type="submit" class="btn btn-block btn-outline-primary text-white">
+                                <h4>PLAY AS A GUEST</h4>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="or-seperator">
+                            <i>OR</i>
+                        </div>
+                        <!-- LOGIN FORM -->
+                        <form class="form-signin" ng-show="swtichLogin" name="loginForm" ng-submit="login()" novalidate prevent-enter-submit>
+                            <h4 class="form-signin-heading text-white">SIGN IN</h4>
+                            <div control-group="loginForm.username">
+                                <label for="inputLoginName" class="sr-only">Username</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="username" ng-model="username" id="inputLoginName" class="form-control" placeholder="Username" required
+                                    autofocus>
+                                </div>
+                                <div class="alert alert-danger" ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+                                    <span ng-show="loginForm.username.$error.required">Username is required.</span>
+                                </div>
+                            </div>
+                            <div control-group="loginForm.password">
+                                <label for="inputLoginPassword" class="sr-only">Password</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="password" id="inputLoginPassword" ng-model="password" class="form-control" placeholder="Password"
+                                    required>
+                                </div>
+                                <div class="alert alert-danger" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+                                    <span ng-show="loginForm.password.$error.required">Password is required.</span>
+                                </div>
+                            </div>
+                            <div class="mb-2"><button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="loginForm.$invalid">SIGN IN</button></div>
+                            <div class="alert alert-danger" ng-if="loginErrorMsg">
+                                <span>{{loginErrorMsg}}</span>
+                            </div>
+                            <hr>
+                            <p>Not a member?
+                                <button type="button" class="btn btn-link text-white" ng-click="swtichLogin=!swtichLogin">SIGN UP</button>
+                            </p>
+                        </form>
+                        <!-- SIGNUP FORM -->
+                        <form class="form-signin" name="signupForm" ng-show="!swtichLogin" ng-submit="register()" prevent-enter-submit>
+                            <h4 class="form-signin-heading text-white">SIGN UP</h4>
+                            <div control-group="signupForm.username">
+                                <label for="inputUsername" class="sr-only">Username</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="username" ng-model="username" id="inputUsername" class="form-control" placeholder="Username" required
+                                    autofocus username-validation>
+                                </div>
+                                <div class="alert alert-danger" ng-show="signupForm.username.$dirty && signupForm.username.$invalid">
+                                    <span ng-show="signupForm.username.$error.required">Username is required.</span>
+                                    <span ng-show="signupForm.username.$error.conflict">
+                                    <strong>{{ username }}</strong> is already taken. Try again!</span>
+                                </div>
+                            </div>
+                            <div control-group="signupForm.password">
+                                <label for="inputSignupPassword" class="sr-only">Password</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="password" id="inputSignupPassword" ng-model="password" class="form-control" placeholder="Password"
+                                    required>
+                                </div>
+                                <div class="alert alert-danger" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">
+                                    <span ng-show="signupForm.password.$error.required">Password is required.</span>
+                                </div>
+                            </div>
+                            <div control-group="signupForm.confirmPassword">
+                                <label for="inputConfirmPassword" class="sr-only">Confirm password</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="confirmPassword" id="inputConfirmPassword" ng-model="confirmPassword" class="form-control" placeholder="Confirm password"
+                                    compare-to="password" required>
+                                </div>
+                                <div class="alert alert-danger" ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid">
+                                    <span ng-show="signupForm.confirmPassword.$error.required">Confirm password is required.</span>
+                                    <span ng-show="signupForm.confirmPassword.$error.compareTo">Passwords don't match.</span>
+                                </div>
+                            </div>
+                            <div class="mb-2"><button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="signupForm.$invalid">SIGN UP</button></div>
+                            <div class="alert alert-danger" ng-if="registrationErrorMsg">
+                                <span>{{registrationErrorMsg}}</span>
+                            </div>
+                            <hr>
+                            <p>Already a member?
+                                <button type="button" class="btn btn-link text-white" ng-click="swtichLogin=!swtichLogin">SIGN IN</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

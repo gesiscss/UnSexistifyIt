@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div id="playCtrl" ng-cloak>
+        <!-- UNSEXISTIFIED CHALLENGE -->
+        <div class="card border-success mb-5">
+            <div class="card-header bg-success border-success">
+                <div class="row text-center">
+                    <div class="col">
+                        <hr>
+                        <h3 class="font-weight-bold font-italic text-white">UnSexistifyIt Challenge </h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive" ng-show="!comment">
+                    <table class="table table-striped table-bordered table-dark">
+                        <thead class="thead-dark">
+                            <tr >
+                                <th scope="col" class="align-middle">#</th>
+                                <th scope="col" class="align-middle">ORIGINAL SENTENCE</th>
+                                <th scope="col" class="align-middle">YOUR VERSION</th>
+                                <th scope="col" class="align-middle">COMMENT SCORE</th>
+                                <th scope="col" class="align-middle" ng-show="rateResults.length > 0">RATE SCORE <i class="fas fa-question-circle" title="The score you earned with the other players rating on your UnSexistified sentences."></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr ng-repeat="sentence in commentedOn | limitTo : -10 track by $index">
+                                <td>{{sentence.description | uppercase}}</td>
+                            </tr> -->
+                            <tr ng-repeat="result in commentResults | limitTo : -10 track by $index">
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{result[0].description | uppercase}}</td>
+                                <td>{{result[1]}}</td>
+                                <td class="text-center">{{result[2]}}</td>
+                                <td class="text-center" ng-show="rateResults.length > 0">{{result[3]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- RATING CHALLENGE -->
+        <div class="card border-warning mb-5" ng-show="rateResults.length > 0">
+            <div class="card-header bg-warning border-warning">
+                <div class="row text-center">
+                    <div class="col">
+                        <hr>
+                        <h3 class="font-weight-bold font-italic text-white">Rating Challenge</h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-dark">
+                        <thead class="thead-dark">
+                            <tr class="table-danger">
+                                <th scope="col" class="align-middle">#</th>
+                                <th scope="col" class="align-middle">SENTENCE</th>
+                                <th scope="col" class="align-middle">YOUR RATING <i class="fas fa-question-circle" title="Your rating on the other player's UnSexistified sentences; 1 = Not Sexist ... 5 = Sexist"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="result in rateResults | limitTo : -10 track by $index">
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{result[0] | uppercase}}</td>
+                                <td class="text-center">{{result[1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

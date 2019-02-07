@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="gameApp">
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <base href="/"> -->
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <!-- <link rel="stylesheet" href="/fontawesome/all.css"> -->
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/modalFeedback.css">
+    <!-- Angular Confirm -->
+    <link rel="stylesheet" href="/angular-confirm/angular-confirm.min.css">
+    <!-- jQuery, Popper, Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- <script src="/bootstrap/jquery-3.3.1.slim.min.js"></script>
+    <script src="/bootstrap/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- Font Awesome JS-->
+    <!-- <script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script> -->
+    <script src="/fontawesome/all.js"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-touch.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-aria.min.js"></script>
+    <!-- <script src="/angular/angular.min.js"></script>
+    <script src="/angular/angular-resource.min.js"></script>
+    <script src="/angular/angular-route.min.js"></script>
+    <script src="/angular/angular-messages.min.js"></script>
+    <script src="/angular/angular-animate.min.js"></script>
+    <script src="/angular/angular-touch.min.js"></script>
+    <script src="/angular/angular-aria.min.js"></script> -->
+    <!-- Custom JS -->
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/routes.js"></script>
+    <script src="/javascripts/services.js"></script>
+    <script src="/javascripts/controllers.js"></script>
+    <script src="/javascripts/directives.js"></script>
+    <!-- Local Storage -->
+    <script src="/angular-local-storage/angular-local-storage.min.js"></script>
+    <!-- angular-clipboard -->
+    <script src="/angular-clipboard/angular-clipboard.js"></script>
+    <!-- Angular confirm -->
+    <script src="/angular-confirm/angular-confirm.min.js"></script>
+</head>
+
+<body>
+    <div ng-cloak>
+        <div id="myModals">
+            <!-- Continue Modal -->
+            <!-- <div ng-if="localStorageNewUser && checkUrl() && round == 6 " ng-controller="playCtrl">
+                <div class="modal fade" id="continuePlayingModal" role="dialog" data-focus="false">
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-success border-success rounded">
+                                <h1 class="text-center">
+                                    <i class="fas fa-flag-checkered"></i>
+                                </h1>
+                            </div>
+                            <div class="modal-body">
+                                <p>Please click to copy your user ID:
+                                    <a title="Click to Copy ID" data-toggle="tooltip" data-placement="bottom">
+                                        <button class="btn btn-outline-danger hvr-bounce-in" supported="supported"
+                                            ng-model="userID" clipboard text="userID" on-copied="success()" on-error="fail(err)">
+                                            {{userID}} 
+                                        </button>
+                                        <code ng-show="isCopied"><i class="fas fa-copy"></i> Copied!</code>
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success btn-sm" id="continuePlaying" ng-click="continuePlaying()">CONTINUE PLAYING</button>
+                                <button type="button" class="btn btn-secondary btn-sm" id="stopPlaying" ng-click="stopPlaying()">LOGOUT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+            <!-- Comment Score Modal -->
+            <div ng-if="localStorageNewUser && checkUrl()">
+            <!-- <div ng-if="localStorageNewUser && checkUrl()" ng-controller="playCtrl"> -->
+                <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-danger border-danger rounded">
+                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                                <h1 class="text-center">
+                                    <i class="fas fa-heart"></i>
+                                    <span> {{currentCommentScore}}</span>
+                                </h1>
+                            </div>
+                            <div class="modal-body text-center" ng-show="levelUpgraded">
+                                <h1 class="text-center">
+                                    <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><!-- <i class="fas fa-star" style="color: gold;"></i> --><br/>
+                                    CONGRATULATIONS
+                                </h1>
+                                <p>You have reached the next level.</p>
+                                <hr />
+                                <p>Now you will be redirected to Instruction page to learn how to play new challenge.</p>
+                            </div>
+                            <button type="button" class="btn" style="display: none;" data-dismiss="modal" id="closeModal" ng-click="closeModal"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Rating Score Modal -->
+            <div ng-if="localStorageNewUser && checkUrl()">
+            <!-- <div ng-if="localStorageNewUser && checkUrl()" ng-controller="playCtrl"> -->
+                <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-sm ">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-danger border-danger rounded">
+                                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                                <h1 class="text-center">
+                                    <i class="fas fa-check"></i>
+                                </h1>
+                            </div>
+                            <button type="button" class="btn" style="display: none;" data-dismiss="modal" id="closeRatingModal" ng-click="closeModal()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feedback Button -->
+        <div id="mybutton" ng-show="localStorageNewUser">
+            <button type="button" class="btn btn-sm feedback" data-toggle="modal" data-target="#feedbackModal">
+                FEEDBACK
+            </button>
+        </div>
+        <!-- Feedback Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-success">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>
+                            <i class="fa fa-thumbs-up"></i> FEEDBACK</h3>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body" ng-controller="mainCtrl">
+                        <section id="slick">
+                            <!-- Feedback Success Message -->
+                            <div class="alert alert-success text-center" role="alert" ng-show="feedbackMessage">
+                                <h2 class="alert-heading">Thank you!</h2>
+                                <hr>
+                                <p>Your feedback has been submitted successfully.</p>
+                            </div>
+                            <div class="feedback-form" ng-show="!feedbackMessage">
+                                <form name="feedback" id="feedback" ng-submit="addNewFeedback()">
+                                    <!-- Name input -->
+                                    <div class="field">
+                                        <input name="name" ng-model="name" placeholder="Your Name" type="text" id="name" />
+                                        <span class="entypo-user icon"></span>
+                                        <span class="slick-tip left">Enter your name</span>
+                                    </div>
+                                    <!-- Email input -->
+                                    <div class="field">
+                                        <input name="email" ng-model="email" placeholder="Contact Email" type="email" id="email" />
+                                        <span class="entypo-mail icon"></span>
+                                        <span class="slick-tip left">Enter your email</span>
+                                    </div>
+                                    <!-- Subject input -->
+                                    <div class="field">
+                                        <input name="subject" ng-model="subject" placeholder="Subject" type="text" id="subject" />
+                                        <span class="entypo-book icon"></span>
+                                        <span class="slick-tip left">Enter the subject</span>
+                                        <!-- <select name="subject" ng-model="subject" id="subject" class="grayed"  onClick="this.className=this.options[this.selectedIndex].className">
+                                            <option value="" disabled="disabled" selected="selected" class="disabled">Subject</option>
+                                            <option id="Positive feedback" value="1">1. Positive feedback</option>
+                                            <option id="Negative feedback" value="2">2. Negative feedback</option>
+                                            <option id="Suggestions" value="3">3. Suggestions</option>
+                                            <option id="Other" value="4">4. Other</option>
+                                        </select>
+                                        <span class="entypo-book icon"></span>
+                                        <span class="slick-tip left">Choose subject</span> -->
+                                    </div>
+                                    <!-- Message input -->
+                                    <div class="field">
+                                        <textarea name="message" ng-model="message" placeholder="Feedback" id="message"></textarea>
+                                        <span class="entypo-comment icon"></span>
+                                        <span class="slick-tip left">Write your feedback</span>
+                                    </div>
+                                    <!-- Position input -->
+                                    <div class="field">
+                                        <input name="position" ng-model="position" placeholder="Position / Profession / Title ..." type="text" id="position" />
+                                        <span class="entypo-info icon"></span>
+                                        <span class="slick-tip left">Poistion</span>
+                                    </div>
+                                    <!-- Block checboxes -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-info-circled"></span>Please provide us your age</p>
+                                        <fieldset class="blocks" id="age">
+                                            <!-- 18 - 25 -->
+                                            <input type="radio" ng-model="age" id="age-1" name="age" value="1" />
+                                            <label for="age-1">Under 18</label>
+                                            <!-- 25 - 35 -->
+                                            <input type="radio" ng-model="age" id="age-2" name="age" value="2" />
+                                            <label for="age-2">18 - 30</label>
+                                            <!-- 35 - 45 -->
+                                            <input type="radio" ng-model="age" id="age-3" name="age" value="3" />
+                                            <label for="age-3">30 - 45</label>
+                                            <!-- 45 - 60 -->
+                                            <input type="radio" ng-model="age" id="age-4" name="age" value="4" />
+                                            <label for="age-4">45 - 60</label>
+                                            <!-- 65 - 75 -->
+                                            <input type="radio" ng-model="age" id="age-5" name="age" value="5" />
+                                            <label for="age-5">Above 60</label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10 mb-20 bt"></div>
+                                    <!-- Stars rating 1 -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-help-circled"></span>How clear were the game instructions?</p>
+                                        <fieldset class="stars" id="clear-rating">
+                                            <!-- 5 stars -->
+                                            <input type="radio" ng-model="clear" id="clear-5" name="clear-rating" value="5" />
+                                            <label for="clear-5">
+                                                <span class="slick-tip rate">Pretty Clear</span>
+                                            </label>
+                                            <!-- 4 stars -->
+                                            <input type="radio" ng-model="clear" id="clear-4" name="clear-rating" value="4" />
+                                            <label for="clear-4">
+                                                <span class="slick-tip rate">very Clear</span>
+                                            </label>
+                                            <!-- 3 stars -->
+                                            <input type="radio" ng-model="clear" id="clear-3" name="clear-rating" value="3" checked="checked" />
+                                            <label for="clear-3">
+                                                <span class="slick-tip rate">Clear Enough</span>
+                                            </label>
+                                            <!-- 2 stars -->
+                                            <input type="radio" ng-model="clear" id="clear-2" name="clear-rating" value="2" />
+                                            <label for="clear-2">
+                                                <span class="slick-tip rate">Not Clear</span>
+                                            </label>
+                                            <!-- 1 star -->
+                                            <input type="radio" ng-model="clear" id="clear-1" name="clear-rating" value="1" />
+                                            <label for="clear-1">
+                                                <span class="slick-tip rate">Not Clear At All</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10"></div>
+                                    <!-- Stars rating 1 -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-help-circled"></span>How difficult was the game?</p>
+                                        <fieldset class="stars" id="difficult-rating">
+                                            <!-- 5 stars -->
+                                            <input type="radio" ng-model="difficult" id="difficult-5" name="difficult-rating" value="5" />
+                                            <label for="difficult-5">
+                                                <span class="slick-tip rate">Extremely Difficult</span>
+                                            </label>
+                                            <!-- 4 stars -->
+                                            <input type="radio" ng-model="difficult" id="difficult-4" name="difficult-rating" value="4" />
+                                            <label for="difficult-4">
+                                                <span class="slick-tip rate">Very Difficult</span>
+                                            </label>
+                                            <!-- 3 stars -->
+                                            <input type="radio" ng-model="difficult" id="difficult-3" name="difficult-rating" value="3" checked="checked" />
+                                            <label for="difficult-3">
+                                                <span class="slick-tip rate">Difficult Enough</span>
+                                            </label>
+                                            <!-- 2 stars -->
+                                            <input type="radio" ng-model="difficult" id="difficult-2" name="difficult-rating" value="2" />
+                                            <label for="difficult-2">
+                                                <span class="slick-tip rate">Not Difficult</span>
+                                            </label>
+                                            <!-- 1 star -->
+                                            <input type="radio" ng-model="difficult" id="difficult-1" name="difficult-rating" value="1" />
+                                            <label for="difficult-1">
+                                                <span class="slick-tip rate">Not Difficult At All</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10"></div>
+                                    <!-- Stars rating 1 -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-help-circled"></span>How intersting was the game?</p>
+                                        <fieldset class="stars" id="intersting-rating">
+                                            <!-- 5 stars -->
+                                            <input type="radio" ng-model="intersting" id="intersting-5" name="intersting-rating" value="5" />
+                                            <label for="intersting-5">
+                                                <span class="slick-tip rate">Awesome</span>
+                                            </label>
+                                            <!-- 4 stars -->
+                                            <input type="radio" ng-model="intersting" id="intersting-4" name="intersting-rating" value="4" />
+                                            <label for="intersting-4">
+                                                <span class="slick-tip rate">Pretty Satisfied</span>
+                                            </label>
+                                            <!-- 3 stars -->
+                                            <input type="radio" ng-model="intersting" id="intersting-3" name="intersting-rating" value="3" checked="checked" />
+                                            <label for="intersting-3">
+                                                <span class="slick-tip rate">Not ‌‌Best, Not Worst</span>
+                                            </label>
+                                            <!-- 2 stars -->
+                                            <input type="radio" ng-model="intersting" id="intersting-2" name="intersting-rating" value="2" />
+                                            <label for="intersting-2">
+                                                <span class="slick-tip rate">Room For Improvement</span>
+                                            </label>
+                                            <!-- 1 star -->
+                                            <input type="radio" ng-model="intersting" id="intersting-1" name="intersting-rating" value="1" />
+                                            <label for="intersting-1">
+                                                <span class="slick-tip rate">Not So Good</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10"></div>
+                                    <!-- Stars rating 1 -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-help-circled"></span>How challenging was the game?</p>
+                                        <fieldset class="stars" id="challenging-rating">
+                                            <!-- 5 stars -->
+                                            <input type="radio" ng-model="challenging" id="challenging-5" name="challenging-rating" value="5" />
+                                            <label for="challenging-5">
+                                                <span class="slick-tip rate">Extremely Challenging</span>
+                                            </label>
+                                            <!-- 4 stars -->
+                                            <input type="radio" ng-model="challenging" id="challenging-4" name="challenging-rating" value="4" />
+                                            <label for="challenging-4">
+                                                <span class="slick-tip rate">Very Challenging</span>
+                                            </label>
+                                            <!-- 3 stars -->
+                                            <input type="radio" ng-model="challenging" id="challenging-3" name="challenging-rating" value="3" checked="checked" />
+                                            <label for="challenging-3">
+                                                <span class="slick-tip rate">Challenging Enough</span>
+                                            </label>
+                                            <!-- 2 stars -->
+                                            <input type="radio" ng-model="challenging" id="challenging-2" name="challenging-rating" value="2" />
+                                            <label for="challenging-2">
+                                                <span class="slick-tip rate">Not Challenging</span>
+                                            </label>
+                                            <!-- 1 star -->
+                                            <input type="radio" ng-model="challenging" id="challenging-1" name="challenging-rating" value="1" />
+                                            <label for="challenging-1">
+                                                <span class="slick-tip rate">Not Challenging At All</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10"></div>
+                                    <!-- Stars rating 1 -->
+                                    <div class="field">
+                                        <p class="ratings">
+                                            <span class="entypo-help-circled"></span>How well-designed was the game?</p>
+                                        <fieldset class="stars" id="design-rating">
+                                            <!-- 5 stars -->
+                                            <input type="radio" ng-model="design" id="design-5" name="design-rating" value="5" />
+                                            <label for="design-5">
+                                                <span class="slick-tip rate">Awesome</span>
+                                            </label>
+                                            <!-- 4 stars -->
+                                            <input type="radio" ng-model="design" id="design-4" name="design-rating" value="4" />
+                                            <label for="design-4">
+                                                <span class="slick-tip rate">Pretty Satisfied</span>
+                                            </label>
+                                            <!-- 3 stars -->
+                                            <input type="radio" ng-model="design" id="design-3" name="design-rating" value="3" checked="checked" />
+                                            <label for="design-3">
+                                                <span class="slick-tip rate">Not Best, Not Worst</span>
+                                            </label>
+                                            <!-- 2 stars -->
+                                            <input type="radio" ng-model="design" id="design-2" name="design-rating" value="2" />
+                                            <label for="design-2">
+                                                <span class="slick-tip rate">Room For Improvement</span>
+                                            </label>
+                                            <!-- 1 star -->
+                                            <input type="radio" ng-model="design" id="design-1" name="design-rating" value="1" />
+                                            <label for="design-1">
+                                                <span class="slick-tip rate">Not So Good</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clrfx mt-10 mb-20 bt"></div>
+                                    <div class="clrfx mt-20"></div>
+                                    <!-- Terms and Conditions link -->
+                                    <input type="submit" value="Send" class="send" form="feedback" name="send" ng-click="feedback.$valid && switchMsg()" />
+                                    <hr>
+                                    <div class="terms w-47">
+                                        <i class="fas fa-lock"></i> Your information won’t be disclosed.
+                                    </div>
+                                </form>
+                                <!-- / Form fields -->
+                            </div>
+                            <!-- / Feedback form -->
+                        </section>
+                        <div class="clrfx-buy"></div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" ng-cloak>
+        <!-- Sidebar Holder -->
+        <div ng-if="localStorageNewUser && checkUrl()">
+            <!-- <nav id="sidebar" ng-show="sidebar" ng-controller="playCtrl"> -->
+            <nav id="sidebar" ng-show="sidebar">
+                <div class="sidebar-header">
+                    <h3>Welcome, {{localStorageNewUser}}</h3>
+                </div>
+
+                <ul class="list-unstyled CTAs">
+                    <li>
+                        <p class="">
+                            <i class="fas fa-trophy" style="color:lightblue"></i>
+                            <i>LEVEL:
+                                <u>{{userLevel}}</u>
+                            </i>
+                        </p>
+                    </li>
+                </ul>
+                <hr style="border-color:pink;">
+                <ul class="list-unstyled CTAs">
+                    <li>
+                        <p class="">
+                            <i class="fas fa-heart fa-lg" style="color:red;"></i>
+                            <i>TOTAL SCORE:
+                                <u>{{totalScore}}</u>
+                            </i>
+                        </p>
+                    </li>
+                    <li ng-show="numberOfRates > 0">
+                        <p class="">
+                            <i class="fas fa-heart" style="color: #28CC9E;"></i>
+                            <i>UNSEXISTIFYIT SCORE:
+                                <u>{{currentUserCommentScore}}</u>
+                            </i>
+                        </p>
+                    </li>
+                    <li ng-show="numberOfRates > 0">
+                        <p class="">
+                            <i class="fas fa-heart" style="color: gold;"></i>
+                            <i>RATE SCORE:
+                                <u>{{currentUserRateScore}}</u>
+                            </i>
+                        </p>
+                    </li>
+                </ul>
+                <hr style="border-color:pink;">
+                <ul class="list-unstyled CTAs">
+                    <li>
+                        <p class="">
+                            <i class="fas fa-hashtag" style="color:#28CC9E;"></i>
+                            <i>UNSEXISTIFIED:
+                                <u>{{numberOfComments}}</u>
+                            </i>
+                        </p>
+                    </li>
+                    <li ng-show="numberOfRates > 0">
+                        <p class="">
+                            <i class="fas fa-hashtag" style="color:gold;"></i>
+                            <i>RATED:
+                                <u>{{numberOfRates}}</u>
+                            </i>
+                        </p>
+                    </li>
+                </ul>
+                <hr style="border-color:pink;">
+                <ul class="list-unstyled CTAs">
+                    <li>
+                        <a role="button" href="" class="deleteMe" ng-click="logout()">SIGN OUT</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Page Content Holder. each  controller applies a different class -->
+        <div class="{{ pageClass }}" id="content">
+            <!-- Top navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <!-- <button type="button" id="sidebarCollapse" class="navbar-btn" ng-show="sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button> -->
+                    <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button> -->
+                    <!-- Top navbar -->
+                    <div class="collapse navbar-collapse w-100 order-1 dual-collapse2" id="navbarSupportedContent" ng-controller="mainCtrl">
+                        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+                        <ul class="nav navbar-nav ml-auto" id="mobileNav">
+                            <li class="nav-item" ng-class="{ active: isActive('/')}">
+                                <a class="nav-link" href="/">
+                                    <i class="fa fa-home"></i> HOME</a>
+                            </li>
+                            <li class="nav-item" ng-class="{ active: isActive('/instruction')}" ng-show="localStorageNewUser">
+                                <a class="nav-link" href="#/instruction">
+                                    <i class="fas fa-list-ol"></i> INSTRUCTION</a>
+                            </li>
+                            <li class="nav-item" ng-class="{ active: isActive('/play')}" ng-show="localStorageNewUser">
+                                <a class="nav-link" href="#/play">
+                                    <i class="fas fa-broom"></i> PLAY</a>
+                            </li>
+                            <li class="nav-item" ng-class="{ active: isActive('/profile')}" ng-show="localStorageNewUser">
+                                <a class="nav-link" href="#/profile">
+                                    <i class="fas fa-user"></i> PROFILE</a>
+                            </li>
+                            <li class="nav-item" ng-class="{ active: isActive('/leaderboard')}">
+                                <a class="nav-link" href="#/leaderboard">
+                                    <i class="fas fa-crown"></i> LEADERBOARD</a>
+                            </li>
+                            <li class="nav-item" ng-class="{ active: isActive('/about')}">
+                                <a class="nav-link" href="#/about">
+                                    <i class="fas fa-info"></i> ABOUT</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="playerinfo navbar w-100 order-0 order-md-0 dual-collapse2">
+                        <ul class="navbar-nav mr-auto ml-auto justify-content-between" ng-if="scoreNavbar" ng-show="localStorageNewUser">
+                            <li class="nav-item">
+                                <div class="row feature_desc clearfix">
+                                    <div class="col">
+                                        <h5 style="color: #fff;">Welcome, {{localStorageNewUser}}</h5>
+                                    </div>
+                                    <div class="col float-right">
+                                        <!-- <button class="button btn-warning btn-sm" ng-controller="playCtrl" ng-click="logout()">SIGN OUT</button> -->
+                                        <button class="button btn-warning btn-sm" ng-click="logout()">SIGN OUT</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fas fa-trophy" style="color:greenyellow"></i>
+                                <i style="color:#fff; margin-right: 2rem;">LEVEL: <u>{{userLevel}}</u></i>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fas fa-heart" style="color:red"></i>
+                                <i style="color:#fff; margin-right: 2rem;">TOTAL SCORE: <u>{{totalScore}}</u></i>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fas fa-hashtag" style="color:yellow"></i>
+                                <i style="color:#fff; margin-right: 2rem;">UNSEXISTIFIED: <u>{{numberOfComments}}</u></i>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fas fa-hashtag" style="color:blue"></i>
+                                <i style="color:#fff; margin-right: 2rem;">RATED: <u>{{numberOfRatess}}</u></i>
+                            </li>
+                        </ul>
+                        <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-align-justify"></i>
+                        </button> -->
+                        <button class="navbar-toggler d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <!-- Container -->
+            <div class="container">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <!-- <script type="text/javascript">
+    $(document).ready(function() {
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+    });
+    </script> -->
+    <!-- <script>
+    $(".nav a").on("click", function() {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+    </script> -->
+</body>
+
+</html>

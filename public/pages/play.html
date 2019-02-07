@@ -1,0 +1,136 @@
+<div class="container">
+    <div id="playCtrl" ng-show="localStorageNewUser" ng-cloak>
+        <!-- Instruction panel -->
+        <div class="card border-primary mb-1" ng-show="!numberOfRounds || !toggle">
+            <div class="card-header text-center" id="instructions">
+                <h1 ng-if="showUnsexistifyit()" style="font-size: 3rem;font-family: auto;">UnSexistifyIt</h1>
+                <!-- <h1>CHALLENGE: UNSEXISTIFYIT</h1> -->
+                <h1 ng-if="showRating()" style="font-size: 3rem;font-family: auto;">Rating</h1>
+                <button class="btn btn-sm btn-outline-danger" ng-click="instructionsToggle()">{{toggleText}}</button>
+            </div>
+            <div class="card-body animate-show-hide" ng-show="toggle">
+                <h5>QUICK INSTRUCTION</h5>
+                <div class="row" ng-show="showUnsexistifyit()">
+                    <div class="col">
+                        <!-- <div> -->
+                        <ul>
+                            <!-- <h4>UNSEXISTIFYIT</h4> -->
+                            <li>Convert the given statement into non-sexist or as less sexist as possible.</li>
+                            <li>Go to <a class="alert-link" href="#/instruction" style="color: purple;"><i class="fas fa-list-ol"></i> INSTRUCTION</a> for more details.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-show="showRating()">
+                    <ul>
+                        <li>For given sentence, rate how sexist it is.</li>
+                        <li>Go to <a class="alert-link" href="#/instruction#rating" style="color: purple;"><i class="fas fa-list-ol"></i> INSTRUCTION</a> for more details.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Unsextifiyit panel -->
+        <div class="card border-success mb-3" ng-show="showUnsexistifyit()">
+            <!-- <div class="card border-success mb-3"> -->
+            <!-- Random Sentence Panel -->
+            <div class="card-header bg-success border-success text-center">
+                <hr>
+                <!-- <h3 class="original_sentence" ng-model="currentSentence.description" uppercased></h3> -->
+                <h3 class="original_sentence" ng-model="currentSentence.description" highlight uppercased></h3>
+                <!-- <h3 class="original_sentence">{{ currentSentence.description | uppercase }}</h3> -->
+                <hr>
+            </div>
+            <div class="card-body border-success" id="comment_form">
+                <form name="commentForm" ng-submit="addComment()" prevent-enter-submit>
+                    <textarea type="text" name="unsexistified" class="form-control" ng-model="content" rows="3" placeholder="Type non-sexist version here..." autofocus uppercased required></textarea>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-if="content" ng-show="commentForm.unsexistified.$pristine || isModified">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&#xD7;</span>
+                        </button>You must modify the original sentence!</div>
+                    <br>
+                    <div class="text-center">
+                        <p>
+                            <b>Number of changed words:</b>
+                            <i>{{ changedWordsCounter }}</i>
+                            <!-- <b style="margin-left: 10px;margin-right: 10px;"> | </b> -->
+                            <br />
+                            <b>Number of changed gender words:</b>
+                            <i>{{ changedGenderwordsNumber }}</i>
+                            <br />
+                            <b>Number of changed negative words:</b>
+                            <i>{{ changedNegationsNumber }}</i>
+                        </p>
+                        <button type="button" class="btn btn-warning" ng-click="copyOriginal()" style="width: 200px;">
+                            COPY ORIGINAL
+                        </button>
+                        <a class="btn btn-primary text-white" role="button" ng-click="skipToNext()" style="width: 200px;">
+                            SKIP TO NEXT
+                        </a>
+                        <button type="submit" class="btn btn-success" style="width: 200px;" ng-disabled="commentForm.unsexistified.$pristine || isModified" ng-class="{disabled:commentForm.$invalid}" data-toggle="modal" data-target="#scoreModal">
+                            SUBMIT
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Rating Panel -->
+        <div class="card border-warning mb-3" ng-show="showRating()">
+            <div class="card-header bg-warning border-warning text-center">
+                <hr>
+                <h3 class="original_sentence">{{ randomComment.content | uppercase }}</h3>
+                <hr>
+            </div>
+            <div class="card-body border-warning text-center" id="rating_form">
+                <form name="ratingForm" ng-submit="addRating()">
+                    <div class="alert alert-secondary">
+                    <!-- <div> -->
+                        <hr class="my-4">
+                        <div class="row form-check-inline vertical_radio" style="width: 100%;">
+                            <div class="form-check text-center col">
+                                <input class="form-check-input option-input radio" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate1" ng-value=1>
+                                <br>
+                                <label class="form-check-label font-weight-bold" for="rate1" style="width: max-content;">NOT SEXIST</label>
+                            </div>
+                            <div class="form-check text-center col">
+                                <input class="form-check-input option-input radio" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate2" ng-value=2>
+                                <br>
+                                <label class="form-check-label" for="rate2"> </label>
+                            </div>
+                            <div class="form-check text-center col">
+                                <input class="form-check-input option-input radio" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate3" ng-value=3>
+                                <br>
+                                <label class="form-check-label" for="rate3"> </label>
+                            </div>
+                            <div class="form-check text-center col">
+                                <input class="form-check-input option-input radio" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate4" ng-value=4>
+                                <br>
+                                <label class="form-check-label" for="rate4"> </label>
+                            </div>
+                            <div class="form-check text-center col">
+                                <input class="form-check-input option-input radio" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate5" ng-value=5>
+                                <br>
+                                <label class="form-check-label font-weight-bold" for="rate5">SEXIST</label>
+                            </div>
+                        </div>
+                        <hr class="mt-4">
+                        <div class="row">
+                            <div class="form-check text-center col mb-5">
+                                <input class="form-check-input option-input checkbox" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate-1" ng-value=-1>
+                                <br>
+                                <label class="form-check-label text-center font-weight-bold" for="rate-1" style="padding-top: 5px; padding-right: 20px;">MEANINGLESS</label>
+                                <!-- <hr class="mb-4"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <!-- <label class="form-check-label btn btn-danger" for="rate-1" style="width: 200px;">MEANINGLESS <input class="form-check-input d-none" type="radio" ng-model="rate" name="inlineRadioOptions" id="rate-1" ng-value=-1></label> -->
+                        <button class="btn btn-primary text-white" role="button" ng-click="skipToNextRating()" style="width: 200px;">
+                            SKIP TO NEXT
+                        </button>
+                        <button type="submit" class="btn btn-success" style="width: 200px;" ng-disabled="ratingForm.$pristine" data-toggle="modal" data-target="#ratingModal"> SUMBIT
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
