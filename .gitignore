@@ -1,4 +1,4 @@
-#.ipynb_checkpoints/
+.ipynb_checkpoints/
 sftp-config.json
 evaluation/json_files/
 config/database.js
