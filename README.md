@@ -55,10 +55,10 @@ A language game which aims to convert sexist statements into non-sexist.
 npm install
 ```
 
-- Make sure Mongo is running on tour system. How to run MongoDB on [Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition), [OSX](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb), and [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition)
+- Make sure Mongo is running on your system. How to run MongoDB on [Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition), [OSX](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb), and [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition)
 
 - To start the project, run
 ```bash
 npm start
 ```
-- Navigate to http://localhost:5000/ in your browser to play the game
+- Navigate to http://localhost:3000/ in your browser to play the game
