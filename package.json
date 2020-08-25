@@ -11,7 +11,7 @@
         "angular-confirm1": "^1.1.0",
         "angular-material": "^1.1.20",
         "angularjs-slider": "^7.0.0",
-        "bcrypt": "^3.0.7",
+        "bcrypt": "^5.0.0",
         "bcrypt-nodejs": "0.0.3",
         "bcryptjs": "^2.4.3",
         "bluebird": "^3.7.2",
