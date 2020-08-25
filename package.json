@@ -24,7 +24,7 @@
         "ejs": "^3.0.1",
         "express": "^4.17.1",
         "express-session": "^1.17.0",
-        "helmet": "^3.21.2",
+        "helmet": "^4.1.0",
         "http-errors": "^1.7.3",
         "jsonwebtoken": "^8.5.1",
         "loadtest": "^4.0.0",
