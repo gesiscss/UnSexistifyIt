@@ -9,7 +9,7 @@
     "dependencies": {
         "angular-clipboard": "^1.7.0",
         "angular-confirm1": "^1.1.0",
-        "angular-material": "^1.1.20",
+        "angular-material": "^1.2.1",
         "angularjs-slider": "^7.0.0",
         "bcrypt": "^5.0.0",
         "bcrypt-nodejs": "0.0.3",
