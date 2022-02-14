@@ -27,7 +27,7 @@
         "helmet": "^4.1.1",
         "http-errors": "^1.7.3",
         "jsonwebtoken": "^8.5.1",
-        "loadtest": "^5.1.0",
+        "loadtest": "^5.2.0",
         "mocha": "^8.2.0",
         "mongoose": "^5.10.10",
         "morgan": "^1.9.1",
